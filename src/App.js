@@ -31,6 +31,17 @@ function App() {
     gradients: {
       primary: `linear-gradient(135deg, ${lightGreen["500"]} 0%, ${cyan[400]} 50%, ${deepPurple[400]} 100%)`,
     },
+    typography: {
+      fontFamily: '"Plus Jakarta Sans", "Helvetica Neue", Arial, sans-serif',
+      h1: { fontWeight: 800 },
+      h2: { fontWeight: 700 },
+      h5: { fontWeight: 800 },
+      body1: { fontWeight: 400 },
+      button: {
+        fontWeight: 700,
+        textTransform: "none",
+      },
+    },
   });
 
   return (
@@ -42,7 +53,6 @@ function App() {
           <RegistrationDialog />
           <CounsellingDialog />
           <CodexoSuccessDialog />
-
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
@@ -51,7 +61,6 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
-
           <Footer />
         </Router>
       </ThemeProvider>

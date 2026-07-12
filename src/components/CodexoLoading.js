@@ -123,7 +123,6 @@ const CodexoLoading = ({ isLoading, onComplete }) => {
             color: cyan[400],
             fontWeight: "700",
             fontSize: "0.8rem",
-            fontFamily: "monospace",
           }}
         >
           {Math.round(displayPercent)}%

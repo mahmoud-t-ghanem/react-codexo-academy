@@ -133,8 +133,8 @@ function NavBar() {
                     src="/logo.png"
                     alt="Codexo Logo"
                     sx={{
-                      width: "2.4rem",
-                      height: "2.4rem",
+                      width: { xs: "2.2rem", sm: "2.5rem" },
+                      height: { xs: "2.2rem", sm: "2.5rem" },
                       objectFit: "contain",
                     }}
                   />
@@ -144,9 +144,8 @@ function NavBar() {
                     noWrap
                     sx={{
                       display: "block",
-                      fontSize: "1.8rem",
-                      fontFamily: "monospace",
-                      fontWeight: "bold",
+                      fontSize: { xs: "1.7rem", sm: "1.9rem" },
+                      fontWeight: 800,
                       background: theme.gradients.primary,
                       WebkitBackgroundClip: "text",
                       WebkitTextFillColor: "transparent",
@@ -223,7 +222,11 @@ function NavBar() {
                       }),
                     }}
                   >
-                    {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
+                    {isMenuOpen ? (
+                      <CloseIcon sx={{ fontSize: "1.7rem" }} />
+                    ) : (
+                      <MenuIcon sx={{ fontSize: "1.7rem" }} />
+                    )}
                   </IconButton>
                 </Box>
               </Box>

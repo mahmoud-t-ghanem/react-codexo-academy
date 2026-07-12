@@ -276,8 +276,6 @@ const Blog = () => {
                           fontSize: "0.82rem",
                           color: theme.palette.text.main,
                           lineHeight: 1.6,
-                          fontFamily:
-                            "'Fira Code', 'Courier New', Courier, monospace",
                           whiteSpace: "pre",
                           display: "block",
                         }}
