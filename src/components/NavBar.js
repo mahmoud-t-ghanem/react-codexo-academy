@@ -130,7 +130,7 @@ function NavBar() {
                 >
                   <Box
                     component="img"
-                    src="/logo.png"
+                    src="/logo.webp"
                     alt="Codexo Logo"
                     sx={{
                       width: { xs: "2.2rem", sm: "2.5rem" },
