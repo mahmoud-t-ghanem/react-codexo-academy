@@ -25,7 +25,7 @@ import LaunchIcon from "@mui/icons-material/Launch";
 import { grey, lightGreen, cyan, deepPurple } from "@mui/material/colors";
 import CodexoButton from "./CodexoButton";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useCodexoContext } from "../contexts/codexoContext";
 
 const pages = [
@@ -56,6 +56,7 @@ const TerminalGradientSvg = () => (
 
 function NavBar() {
   const theme = useTheme();
+  const location = useLocation();
   const { setOpenRegistrationDialog } = useCodexoContext();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -158,33 +159,41 @@ function NavBar() {
                 </Box>
 
                 <Box sx={{ display: { xs: "none", md: "flex" }, gap: 1 }}>
-                  {pages.map((page) => (
-                    <Button
-                      component={Link}
-                      to={page.path}
-                      key={page.name}
-                      sx={{
-                        my: 2,
-                        px: 2,
-                        py: 1,
-                        color: grey[200],
-                        display: "block",
-                        fontWeight: "500",
-                        fontSize: "0.95rem",
-                        textTransform: "uppercase",
-                        letterSpacing: "0.5px",
-                        borderRadius: "8px",
-                        transition: "all 0.3s ease",
-                        "&:hover": {
-                          color: cyan[400],
-                          backgroundColor: "rgba(255, 255, 255, 0.06)",
-                          transform: "translateY(-1px)",
-                        },
-                      }}
-                    >
-                      {page.name}
-                    </Button>
-                  ))}
+                  {pages.map((page) => {
+                    const isActive =
+                      location.pathname === page.path ||
+                      (page.path === "/home" && location.pathname === "/");
+                    return (
+                      <Button
+                        component={Link}
+                        to={page.path}
+                        key={page.name}
+                        sx={{
+                          my: 2,
+                          px: 2,
+                          py: 1,
+                          color: isActive ? cyan[400] : grey[200],
+                          backgroundColor: isActive
+                            ? "rgba(255, 255, 255, 0.06)"
+                            : "transparent",
+                          display: "block",
+                          fontWeight: "500",
+                          fontSize: "0.95rem",
+                          textTransform: "uppercase",
+                          letterSpacing: "0.5px",
+                          borderRadius: "8px",
+                          transition: "all 0.3s ease",
+                          "&:hover": {
+                            color: cyan[400],
+                            backgroundColor: "rgba(255, 255, 255, 0.06)",
+                            transform: "translateY(-1px)",
+                          },
+                        }}
+                      >
+                        {page.name}
+                      </Button>
+                    );
+                  })}
                 </Box>
 
                 <Box sx={{ display: { xs: "none", md: "block" } }}>
@@ -246,60 +255,70 @@ function NavBar() {
             width: "100vw",
             zIndex: 1300,
             boxShadow: `0px 20px 40px ${alpha(cyan[400], 0.5)}`,
-            backgroundColor: "#121214",
+            backgroundColor: theme.palette.primary.main,
             backdropFilter: "blur(20px)",
             WebkitBackdropFilter: "blur(20px)",
+            maxHeight: "calc(100vh - 70px)",
+            overflowY: "auto",
           }}
         >
           <List
             sx={{ width: "100%", pb: 3, pt: 1, backgroundColor: "transparent" }}
           >
-            {pages.map((page) => (
-              <ListItem
-                key={page.name}
-                disablePadding
-                sx={{ display: "block", backgroundColor: "transparent" }}
-              >
-                <ListItemButton
-                  component={Link}
-                  to={page.path}
-                  onClick={closeMenu}
-                  sx={{
-                    py: 2,
-                    justifyContent: "center",
-                    borderBottom: "1px solid rgba(255,255,255,0.05)",
-                    backgroundColor: "transparent",
-                    transition: "all 0.2s ease",
-                    "&:hover": {
-                      backgroundColor: "rgba(255, 255, 255, 0.05)",
-                      "& .MuiListItemText-primary": {
-                        color: (theme) =>
-                          theme.palette.cyan?.[400] || "#26c6da",
-                      },
-                    },
-                  }}
+            {pages.map((page) => {
+              const isActive =
+                location.pathname === page.path ||
+                (page.path === "/home" && location.pathname === "/");
+              return (
+                <ListItem
+                  key={page.name}
+                  disablePadding
+                  sx={{ display: "block", backgroundColor: "transparent" }}
                 >
-                  <ListItemText
-                    primary={page.name}
-                    slotProps={{
-                      primary: {
-                        component: "span",
-                        sx: {
-                          display: "block",
-                          textAlign: "center",
-                          fontWeight: "700",
-                          fontSize: "1.1rem",
-                          letterSpacing: "1.5px",
-                          textTransform: "uppercase",
-                          color: grey[200],
-                          transition: "color 0.2s ease",
+                  <ListItemButton
+                    component={Link}
+                    to={page.path}
+                    onClick={closeMenu}
+                    sx={{
+                      color: isActive ? cyan[400] : grey[200],
+                      backgroundColor: isActive
+                        ? "rgba(255, 255, 255, 0.06)"
+                        : "transparent",
+                      py: 2,
+                      justifyContent: "center",
+                      borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
+                      transition: "all 0.2s ease",
+                      "&:hover": {
+                        backgroundColor: "rgba(255, 255, 255, 0.06)",
+                        "& .MuiListItemText-primary": {
+                          color: (theme) =>
+                            theme.palette.cyan?.[400] || "#26c6da",
                         },
                       },
                     }}
-                  />
-                </ListItemButton>
-              </ListItem>
-            ))}
+                  >
+                    <ListItemText
+                      primary={page.name}
+                      slotProps={{
+                        primary: {
+                          component: "span",
+                          sx: {
+                            display: "block",
+                            textAlign: "center",
+                            fontWeight: "700",
+                            fontSize: "1.1rem",
+                            letterSpacing: "1.5px",
+                            textTransform: "uppercase",
+                            color: isActive ? cyan[400] : grey[200],
+                            transition: "color 0.2s ease",
+                          },
+                        },
+                      }}
+                    />
+                  </ListItemButton>
+                </ListItem>
+              );
+            })}
             <ListItem
               sx={{
                 justifyContent: "center",

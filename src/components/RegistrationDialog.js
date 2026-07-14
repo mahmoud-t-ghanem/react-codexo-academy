@@ -38,6 +38,7 @@ const RegistrationDialog = () => {
     openRegistrationDialog,
     setOpenRegistrationDialog,
     selectedCourse,
+    setSelectedCourse,
     setOpenCodexoSuccessDialog,
     setCodexoSuccessDialogContent,
     isLoading,
@@ -85,6 +86,7 @@ const RegistrationDialog = () => {
     });
     setErrors({});
     setIsLoading(false);
+    setSelectedCourse("");
   };
 
   const handleLoadingComplete = () => {
