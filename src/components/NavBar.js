@@ -134,8 +134,8 @@ function NavBar() {
                     src="/logo.webp"
                     alt="Codexo Logo"
                     sx={{
-                      width: { xs: "2.2rem", sm: "2.5rem" },
-                      height: { xs: "2.2rem", sm: "2.5rem" },
+                      width: { xs: "1.8rem", sm: "2.3rem" },
+                      height: { xs: "1.8rem", sm: "2.3rem" },
                       objectFit: "contain",
                     }}
                   />
@@ -145,7 +145,7 @@ function NavBar() {
                     noWrap
                     sx={{
                       display: "block",
-                      fontSize: { xs: "1.7rem", sm: "1.9rem" },
+                      fontSize: { xs: "1.4rem", sm: "1.7rem" },
                       fontWeight: 800,
                       background: theme.gradients.primary,
                       WebkitBackgroundClip: "text",
