@@ -154,7 +154,7 @@ function NavBar() {
                       letterSpacing: "2px",
                     }}
                   >
-                    Codexo
+                    CODEXO
                   </Typography>
                 </Box>
 
