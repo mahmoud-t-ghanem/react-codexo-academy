@@ -464,6 +464,7 @@ const Blog = () => {
                   type="submit"
                   startIcon={<SendIcon />}
                   sx={{
+                    mt: { xs: 1, sm: 0 },
                     py: 1.7,
                     px: 6,
                     height: "56px",
